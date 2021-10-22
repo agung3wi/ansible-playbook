@@ -1,0 +1,18 @@
+#################################################
+# Install Jenkins Ubuntu 18.04
+#################################################
+---
+- hosts: web
+  become: true
+  tasks:
+    - name: copy Docker Compose jenkins
+      copy:
+        src: ./docker_compose_jenkins.yml
+        dest: /root/docker_compose_jenkins.yml
+
+    # use files parameter to use multiple docker-compose.yml files
+    - name: deploy Docker Compose stack
+      docker_compose:
+        project_src: /root/
+        files:
+          - docker_compose_jenkins.yml

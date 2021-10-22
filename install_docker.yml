@@ -10,7 +10,16 @@
 
     - name: Install required system packages
       apt: name={{ item }} state=latest update_cache=yes
-      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+      loop:
+        [
+          "apt-transport-https",
+          "ca-certificates",
+          "curl",
+          "software-properties-common",
+          "python3-pip",
+          "virtualenv",
+          "python3-setuptools",
+        ]
 
     - name: Add Docker GPG apt Key
       apt_key:
@@ -28,3 +37,10 @@
     - name: Install Docker Module for Python
       pip:
         name: docker
+    - name: Install docker-compose
+      apt:
+        name: docker-compose
+        state: present
+        update_cache: yes
+      tags:
+        - docker
