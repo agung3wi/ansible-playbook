@@ -1,0 +1,27 @@
+version: '2.2'
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    container_name: es
+    environment:
+      - cluster.name=chimeo-docker-cluster
+      - node.name=es02
+      - network.host=0.0.0.0
+      - discovery.seed_hosts=54.176.84.133
+      - network.publish_host=54.151.21.216
+      - cluster.initial_master_nodes=54.176.84.133,54.151.21.216
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms108m -Xmx108m"
+    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+volumes:
+  esdata:
+    driver: local
