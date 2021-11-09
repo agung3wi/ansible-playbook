@@ -1,0 +1,20 @@
+- hosts: all
+  become: yes
+  vars:
+    domain: danaops-dev.demooke.com
+  tasks:
+    - name: "create  directory"
+      file:
+        path: /home/{{ ansible_user }}/{{ domain }}/public
+        state: directory
+        mode: "0775"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: copy nginx site.conf
+      template:
+        src: site.conf.j2
+        dest: /etc/nginx/sites-enabled/{{ domain }}
+        owner: root
+        group: root
+        mode: "0644"
