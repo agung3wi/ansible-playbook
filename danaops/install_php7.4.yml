@@ -1,5 +1,5 @@
 ---
-- hosts: web
+- hosts: all
   become: true
   vars:
     php_version: 7.4
@@ -21,9 +21,13 @@
       - { option: upload_max_filesize, value: 100M }
       - { section: opcache, option: opcache.enable, value: 1 }
   tasks:
+    - name: add gpg
+      command: sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+
     - name: Add PHP 7 PPA repository
       apt_repository:
-        repo: "ppa:ondrej/php"
+        repo: deb https://packages.sury.org/php/ buster main
+        state: present
 
     - name: Install PHP-FPM
       apt:

@@ -1,0 +1,2 @@
+[dev]
+34.224.68.108 ansible_user=admin ansible_ssh_private_key_file=~/.ssh/id_rsa

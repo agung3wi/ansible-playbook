@@ -1,9 +1,11 @@
 web:
   hosts:
-    server1:
-      ansible_host: 54.176.84.133
-    server2:
-      ansible_host: 54.151.21.216
+    # server1:
+    #   ansible_host: 54.176.84.133
+    # server2:
+    #   ansible_host: 54.151.21.216
+    server3:
+      ansible_host: 54.183.201.211
   vars:
     ansible_user: ubuntu
     ansible_ssh_private_key_file: ~/.ssh/id_rsa
