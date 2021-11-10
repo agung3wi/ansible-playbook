@@ -1,5 +1,5 @@
 #################################################
-# Install Nginx
+# Install Nginx Certbot
 #################################################
 ---
 - hosts: dev
@@ -10,3 +10,6 @@
 
     - name: Install Nginx
       apt: name=nginx state=latest
+
+    - name: Install Nginx
+      apt: name=python-certbot-nginx state=latest

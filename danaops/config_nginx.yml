@@ -1,7 +1,7 @@
 - hosts: all
   become: yes
   vars:
-    domain: danaops-dev.demooke.com
+    domain: danaops.demooke.com
   tasks:
     - name: "create  directory"
       file:

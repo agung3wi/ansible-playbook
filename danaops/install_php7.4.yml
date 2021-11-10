@@ -10,6 +10,7 @@
       - mbstring
       - xml
       - zip
+      - gd
     php_fpm_pools:
       - name: blog
         pm_max_children: 10
@@ -20,6 +21,13 @@
       - { option: post_max_size, value: 100M }
       - { option: upload_max_filesize, value: 100M }
       - { section: opcache, option: opcache.enable, value: 1 }
+      - { option: max_execution_time, value: 1000 }
+      - { option: max_input_time, value: 10000 }
+      - { option: max_input_vars, value: 10000 }
+      - { option: memory_limit, value: 128M }
+      - { option: post_max_size, value: 12M }
+      - { option: session.gc_maxlifetime, value: 1440 }
+      - { option: upload_max_filesize, value: 40M }
   tasks:
     - name: add gpg
       command: sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
