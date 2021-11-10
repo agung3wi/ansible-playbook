@@ -2,40 +2,41 @@
 - hosts: all
   become: true
   tasks:
-    - name: setup ufw
-      template:
-        src: docker.conf.j2
-        dest: /etc/docker/daemon.json
-        owner: root
-        group: root
-        mode: "0644"
+    # - name: setup ufw
+    #   template:
+    #     src: docker.conf.j2
+    #     dest: /etc/docker/daemon.json
+    #     owner: root
+    #     group: root
+    #     mode: "0644"
 
-    - name: service restart Docker
-      command: sudo service docker restart
+    # - name: service restart Docker
+    #   command: sudo service docker restart
 
-    - name: Install UFW
-      apt: name=ufw state=latest
+    # - name: Install UFW
+    #   apt: name=ufw state=latest
 
-    - name: Deny all incoming
-      command: sudo ufw default deny incoming
+    # - name: Deny all incoming
+    #   command: sudo ufw default deny incoming
 
-    - name: allow all outgoing
-      command: sudo ufw default allow outgoing
+    # - name: allow all outgoing
+    #   command: sudo ufw default allow outgoing
 
-    - name: allow all outgoing
-      command: sudo ufw default allow outgoing
+    # - name: allow all outgoing
+    #   command: sudo ufw default allow outgoing
 
-    - name: allow ssh
-      command: sudo ufw allow ssh
+    # - name: allow ssh
+    #   command: sudo ufw allow ssh
 
-    - name: allow http
-      command: sudo ufw allow http
+    # - name: allow http
+    #   command: sudo ufw allow http
 
-    - name: allow https
-      command: sudo ufw allow https
+    # - name: allow https
+    #   command: sudo ufw allow https
 
-    - name: allow database
-      command: sudo ufw allow 3306
+    # - name: allow database
+    #   command: sudo ufw allow 3306
 
-    - name: enable UFW
-      command: sudo ufw enable
+    - name: Set firewall default policy
+      ufw: state=enabled policy=reject
+      become: true
