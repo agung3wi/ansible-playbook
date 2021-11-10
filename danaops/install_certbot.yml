@@ -2,8 +2,8 @@
 - hosts: dev
   become: true
   vars:
-    domain: hobikoe.demooke.com
-    email: agungagungagung@gmail.com
+    domain: api.hobiku.demooke.com
+    email: danajoo01@gmail.com
   tasks:
     - name: Create and Install Cert Using nginx Plugin
       command: "certbot --nginx -d  {{ domain }} -m {{ email }} --agree-tos --noninteractive --redirect"

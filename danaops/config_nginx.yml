@@ -1,7 +1,7 @@
 - hosts: all
   become: yes
   vars:
-    domain: hobikoe.demooke.com
+    domain: api.hobiku.demooke.com
     user: admin
   tasks:
     - name: "create  directory"

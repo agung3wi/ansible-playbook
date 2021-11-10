@@ -2,7 +2,7 @@ server {
     #listen 80;
     #listen [::]:80;
 
-    root /home/{{ansible_user}}/{{domain}}/public;
+    root /home/{{user}}/{{domain}}/public;
     server_name {{domain}};
 
     index index.php index.html;

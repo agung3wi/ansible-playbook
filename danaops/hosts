@@ -1,2 +1,2 @@
 [dev]
-50.19.131.63 ansible_user=admin ansible_ssh_private_key_file=~/.ssh/id_rsa
+172.104.184.119 ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
