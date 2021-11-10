@@ -1,0 +1,24 @@
+#################################################
+# Install Jenkins Ubuntu 18.04
+#################################################
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: copy Docker Compose
+      copy:
+        src: ./docker-compose.yml
+        dest: /root/docker-compose.yml
+
+    - name: init folder redis
+      become_user: root
+      command: mkdir -p /data/redis-data
+
+    - name: operation folder redis
+      become_user: root
+      command: chmod 777 -R /data/redis-data
+
+    # use files parameter to use multiple docker-compose.yml files
+    - name: deploy Docker Compose stack
+      become_user: root
+      command: docker-compose -f /root/docker-compose.yml up -d

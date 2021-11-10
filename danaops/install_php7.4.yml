@@ -59,6 +59,14 @@
       with_items: "{{ php_fpm_ini_options }}"
       tags: php-fpm.options
 
+    - name: setup pool.d admin
+      template:
+        src: fpm.conf.j2
+        dest: /etc/php/7.4/fpm/pool.d/admin.conf
+        owner: root
+        group: root
+        mode: "0644"
+
     - name: Enable and start PHP-FPM service
       systemd:
         name: "php7.4-fpm.service"
