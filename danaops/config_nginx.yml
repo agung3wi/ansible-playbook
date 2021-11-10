@@ -1,15 +1,16 @@
 - hosts: all
   become: yes
   vars:
-    domain: danaops.demooke.com
+    domain: hobikoe.demooke.com
+    user: admin
   tasks:
     - name: "create  directory"
       file:
-        path: /home/{{ ansible_user }}/{{ domain }}/public
+        path: /home/{{ user }}/{{ domain }}/public
         state: directory
         mode: "0775"
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
 
     - name: copy nginx site.conf
       template:
@@ -18,3 +19,6 @@
         owner: root
         group: root
         mode: "0644"
+
+    - name: Restart nginx
+      command: "sudo service nginx restart"
