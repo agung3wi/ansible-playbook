@@ -2,7 +2,7 @@
   tasks:
     - name: initialize the cluster
       become: yes
-      shell: kubeadm init --control-plane-endpoint {{inventory_hostname}}:6443 --pod-network-cidr=10.244.0.0/16
+      shell: kubeadm init --control-plane-endpoint {{ip_master_node}}:6443 --pod-network-cidr=10.244.0.0/16
       args:
         chdir: $HOME
         creates: cluster_initialized.txt
@@ -22,12 +22,12 @@
         remote_src: yes
         owner: kube
 
-    - name: install Pod network
-      become: yes
-      become_user: kube
-      shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
-      args:
-        chdir: $HOME
+    #- name: install Pod network
+    #  become: yes
+    #  become_user: kube
+    #  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
+    #  args:
+    #    chdir: $HOME
         
     - name: Get the token for joining the worker nodes
       become: yes
