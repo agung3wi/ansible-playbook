@@ -22,12 +22,11 @@
         remote_src: yes
         owner: kube
 
-    #- name: install Pod network
-    #  become: yes
-    #  become_user: kube
-    #  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
-    #  args:
-    #    chdir: $HOME
+    - name: install Pod network
+      become: yes
+      shell: kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml 
+      args:
+        chdir: $HOME
         
     - name: Get the token for joining the worker nodes
       become: yes
