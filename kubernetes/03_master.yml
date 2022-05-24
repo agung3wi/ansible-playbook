@@ -2,7 +2,7 @@
   tasks:
     - name: initialize the cluster
       become: yes
-      shell: kubeadm init --control-plane-endpoint {{ip_master_node}}:6443 --pod-network-cidr=10.244.0.0/16
+      shell: kubeadm init --control-plane-endpoint {{ip_master_node}}:6443 --pod-network-cidr=10.244.0.0/16 #change ip_master_node ip node
       args:
         chdir: $HOME
         creates: cluster_initialized.txt
